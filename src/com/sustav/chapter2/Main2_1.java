@@ -19,9 +19,9 @@ public class Main2_1 {
 //        singleLinkedList.deleteDuplicate();
 //        singleLinkedList.list();
 
-        singleLinkedList.list();
-        singleLinkedList.deleteDuplicateInPlace();
-        singleLinkedList.list();
+//        singleLinkedList.list();
+//        singleLinkedList.deleteDuplicateInPlace();
+//        singleLinkedList.list();
 
 //        Map<String, String> buffer = new HashMap<>();
 //        buffer.put("1", String.valueOf(1));
@@ -29,6 +29,9 @@ public class Main2_1 {
 //        buffer.put("50", String.valueOf(50));
 //        buffer.put("289", String.valueOf(289));
 //        buffer.put("1", String.valueOf(11));
+
+        singleLinkedList.list();
+        singleLinkedList.nthToLast(5);
     }
 }
 
@@ -89,6 +92,28 @@ class SingleLinkedList {
             }
             current = current.nextNode;
         }
+    }
+
+    public void nthToLast(int n) {
+
+        if (head == null || n < 1) {
+            return;
+        }
+        Node p1 = head;
+        Node p2 = head;
+        for (int j = 0; j < n - 1; ++j) { // skip n-1 steps ahead
+            if (p2 == null) {
+                return; // not found since list size < n
+            }
+            p2 = p2.nextNode;
+        }
+        while (p2.nextNode != null) {
+            p1 = p1.nextNode;
+            p2 = p2.nextNode;
+        }
+
+        System.out.println(p1.value);
+
     }
 
 }
