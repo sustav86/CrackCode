@@ -116,6 +116,15 @@ class SingleLinkedList {
 
     }
 
+    public static void apply(SingleLinkedList linkedListA, SingleLinkedList linkedListB) {
+        SingleLinkedList result = new SingleLinkedList();
+
+        Node currentNode = linkedListA.head;
+        while (currentNode != null) {
+
+        }
+    }
+
 }
 
 class Node {
