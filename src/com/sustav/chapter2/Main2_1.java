@@ -1,19 +1,31 @@
 package com.sustav.chapter2;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main2_1 {
 
     public static void main(String[] args) {
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
-        singleLinkedList.insert(1);
-        singleLinkedList.insert(5);
-        singleLinkedList.insert(50);
-        singleLinkedList.insert(1);
-        singleLinkedList.insert(289);
-        singleLinkedList.insert(50);
-        singleLinkedList.insert(500);
+        SingleLinkedList singleLinkedListA = new SingleLinkedList();
+        singleLinkedListA.insert(1);
+        singleLinkedListA.insert(5);
+        singleLinkedListA.insert(50);
+        singleLinkedListA.insert(1);
+        singleLinkedListA.insert(289);
+        singleLinkedListA.insert(50);
+//        singleLinkedListA.insert(500);
+
+        SingleLinkedList singleLinkedListB = new SingleLinkedList();
+        singleLinkedListB.insert(1);
+        singleLinkedListB.insert(5);
+        singleLinkedListB.insert(50);
+        singleLinkedListB.insert(1);
+        singleLinkedListB.insert(289);
+        singleLinkedListB.insert(50);
+        singleLinkedListB.insert(500);
+
+        SingleLinkedList result = new SingleLinkedList();
 
 //        singleLinkedList.list();
 //        singleLinkedList.deleteDuplicate();
@@ -30,8 +42,11 @@ public class Main2_1 {
 //        buffer.put("289", String.valueOf(289));
 //        buffer.put("1", String.valueOf(11));
 
-        singleLinkedList.list();
-        singleLinkedList.nthToLast(5);
+//        singleLinkedListA.list();
+//        singleLinkedListA.nthToLast(5);
+
+        SingleLinkedList merge = SingleLinkedList.merge(singleLinkedListA.getHead(), singleLinkedListB.getHead(), 0, result);
+        System.out.println(merge);
     }
 }
 
@@ -117,14 +132,27 @@ class SingleLinkedList {
     }
 
     public static void apply(SingleLinkedList linkedListA, SingleLinkedList linkedListB) {
-        SingleLinkedList result = new SingleLinkedList();
 
-        Node currentNode = linkedListA.head;
-        while (currentNode != null) {
 
-        }
     }
 
+    public static SingleLinkedList merge(Node linkedListA, Node linkedListB, int carry, SingleLinkedList result) {
+        if (linkedListA == null || linkedListB == null) {
+            return null;
+        }
+
+        int sum = linkedListA.value + linkedListB.value;
+        result.insert(sum + carry);
+
+        merge(linkedListA.nextNode, linkedListB.nextNode, sum >= 10 ? 1 : 0, result);
+
+        return result;
+
+    }
+
+    public Node getHead() {
+        return head;
+    }
 }
 
 class Node {
@@ -135,5 +163,9 @@ class Node {
     public Node(int value) {
         this.value = value;
         this.nextNode = null;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
